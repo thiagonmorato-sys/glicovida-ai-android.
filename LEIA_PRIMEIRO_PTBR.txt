@@ -1,0 +1,31 @@
+GLICOVIDA AI — INTEGRAÇÃO DE NOTIFICAÇÕES ANDROID (PACOTE DE TESTE)
+
+Este é um projeto-fonte Capacitor 8 baseado na interface V5 publicada. Ele adiciona notificações locais Android e um botão para testar um alerta em 15 segundos.
+
+IMPORTANTE: este ZIP NÃO é um APK pronto. Ele contém o código-fonte e uma automação GitHub Actions para compilar um APK de depuração na nuvem. O site V5 do Netlify não será substituído.
+
+PASSOS:
+1. Extraia este ZIP no computador.
+2. Crie um NOVO repositório no GitHub: glicovida-ai-android.
+3. Envie todos os arquivos e pastas extraídos para a raiz do repositório. Preserve especialmente .github/workflows e src.
+4. No GitHub, abra Actions.
+5. Execute “Build Android de teste (APK)” usando Run workflow.
+6. Ao concluir, baixe o artefato GlicoVida-AI-Android-APK-TESTE.
+7. Extraia app-debug.apk e instale no Motorola Edge 60 Pro.
+8. No app instalado, configure a mesma Project URL e Publishable key do projeto glicovida-ai.
+9. Entre com a conta fictícia de paciente, vá a Medicamentos e ative os alertas Android.
+10. Toque em “Testar notificação em 15 segundos”. Depois teste um lembrete fictício com o app fechado.
+
+PERMISSÕES:
+- POST_NOTIFICATIONS: autorização normal de notificações do Android.
+- SCHEDULE_EXACT_ALARM: acesso especial “Alarmes e lembretes”, concedido pelo usuário se quiser maior precisão.
+- Não é usada USE_EXACT_ALARM, que tem restrições de política na Play Store.
+
+SEGURANÇA E SAÚDE:
+- Use apenas dados fictícios durante estes testes.
+- Não coloque sb_secret_ ou service_role no app. Use apenas a Publishable key.
+- A notificação não mostra o nome do medicamento na tela bloqueada.
+- O app não calcula doses nem substitui prescrição, orientação médica ou alertas clínicos.
+- O APK debug é somente para testes; ainda não é um AAB assinado para a Play Store.
+
+Consulte README.md para detalhes e limitações.

@@ -1,8 +1,13 @@
-
 name: Build Android de teste (APK)
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
 
 jobs:
   build-android:
@@ -15,7 +20,7 @@ jobs:
       - name: Configurar Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: '22'
 
       - name: Configurar Java 21
         uses: actions/setup-java@v4
@@ -23,12 +28,13 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      
-- name: Configurar Android SDK
-  uses: android-actions/setup-android@v4
-  with:
-    packages: 'platform-tools'
-
+      - name: Configurar Android SDK
+        uses: android-actions/setup-android@v4
+        with:
+          packages: |
+            platform-tools
+            platforms;android-36
+            build-tools;36.0.0
 
       - name: Instalar pacotes JavaScript
         run: npm install
@@ -39,14 +45,8 @@ jobs:
       - name: Criar projeto Android
         run: npx cap add android
 
-      - name: Declarar permissoes Android
-        run: node scripts/patch-android-manifest.mjs
-
       - name: Sincronizar plugins
         run: npx cap sync android
-
-      - name: Instalar Android SDK 36
-        run: sdkmanager "platforms;android-36" "build-tools;36.0.0" "platform-tools"
 
       - name: Compilar APK
         run: |
